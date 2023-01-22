@@ -8,7 +8,10 @@ require 'Database.php';
 $config = require 'config.php';
 
 $db = new Database($config);
-$posts = $db->query("SELECT * FROM posts")->fetchAll();;
+
+$get_id = $_GET['id'];
+$query = "SELECT * FROM posts WHERE id = :id";
+$posts = $db->query($query, [':id' => $get_id])->fetchAll();;
 
 foreach ($posts as $post) {
     echo "<li>" . $post['title'] . "</li>";
