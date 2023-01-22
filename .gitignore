@@ -1,1 +1,4 @@
 .idea
+
+# Credentials
+./config.php
