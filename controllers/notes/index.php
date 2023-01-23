@@ -8,4 +8,4 @@ $heading = 'Your Notes';
 $query = 'select * from notes';
 $notes = $db->query($query)->get();
 
-require 'views/notes.view.php';
+require 'views/notes/index.view.php';

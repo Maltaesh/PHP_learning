@@ -1,10 +1,10 @@
-<?php require('partials/head.php') ?>
+<?php require('views/partials/head.php') ?>
 
     <div class="min-h-full">
 
         <?php
-        require('partials/nav.php');
-        require('partials/banner.php');
+        require('views/partials/nav.php');
+        require('views/partials/banner.php');
         ?>
 
         <main>
