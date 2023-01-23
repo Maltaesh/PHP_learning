@@ -14,11 +14,12 @@
                     foreach ($notes as $note): ?>
                         <li class="text-blue-500 hover:underline">
                             <a href="/note?id=<?= $note['id'] ?>">
-                                <?= $note['body'] ?>
+                                <?= htmlspecialchars($note['body']) ?>
                             </a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
+                <p class="mt-6 text-blue-500 hover:underline"><a href="notes/create">Create Note</a></p>
             </div>
         </main>
     </div>

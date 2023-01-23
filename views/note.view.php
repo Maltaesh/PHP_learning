@@ -9,7 +9,7 @@
 
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-                <h3><?= $note['body'] ?></h3>
+                <h3><?= htmlspecialchars($note['body']) ?></h3>
                 <a class="text-blue-500 hover:underline" href="/notes">
                     ←back to notes
                 </a>
