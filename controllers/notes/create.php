@@ -1,17 +1,17 @@
 <?php
-$heading = 'Create Note';
 
-require 'Validator.php';
+use Core\Database;
+use Core\Validator;
 
-//connect to MySQL database
-$config = require 'config.php';
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $errors = [];
+$errors = [];
 
-    if (!Validator::string(value: $_POST['body'], max: 2000)) {
-        $errors['body'] = "Note body can't be less than 1 character and more than 2000 characters.";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    if (!Validator::string($_POST['body'], 1, 1000)) {
+        $errors['body'] = 'A body of no more than 1,000 characters is required.';
     }
 
     if (empty($errors)) {
@@ -21,4 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 }
-require 'views/notes/create.view.php';
+
+view("notes/create.view.php", [
+    'heading' => 'Create Note',
+    'errors' => $errors
+]);

@@ -1,19 +1,19 @@
 <?php
 
-//connect to MySQL database
-$config = require 'config.php';
+use Core\Database;
+
+$config = require base_path('config.php');
 $db = new Database($config['database']);
 
-$heading = 'Your Notes';
+$currentUserId = 1;
 
-$current_user_id = 1;
+$note = $db->query("select * from notes where id = :id", [
+    'id' => $_GET['id']
+])->findOrFail();
 
-$query = 'select * from notes where id = :id and user_id = :user';
-$note = $db->query($query, [
-    ':id' => $_GET['id'],
-    ':user' => $current_user_id
-])->find_or_abort();
+authorize($note['user_id'] === $currentUserId);
 
-authorize($note['user_id'] === $current_user_id);
-
-require 'views/notes/show.view.php';
+view("notes/show.view.php", [
+    'heading' => 'Note',
+    'note' => $note
+]);

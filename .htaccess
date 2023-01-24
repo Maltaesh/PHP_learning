@@ -1,5 +1,6 @@
+DirectoryIndex public/index.php public/index.html
 Options +SymLinksIfOwnerMatch
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.php [L]
+RewriteRule . /public/index.php [L]
