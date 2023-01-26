@@ -1,36 +1,43 @@
 <?php
 
 use Core\Response;
+use Core\Router;
+use JetBrains\PhpStorm\NoReturn;
 
-function dd($value)
+#[NoReturn] function dd($value): void
 {
-    echo "<pre>";
+    echo "<pre style='background: black; color: white; padding: 10px; font-size: 2em;'>";
     var_dump($value);
     echo "</pre>";
 
     die();
 }
 
-function urlIs($value)
+function urlIs($value): bool
 {
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
-function authorize($condition, $status = Response::FORBIDDEN)
+function authorize($condition, $status = Response::FORBIDDEN): void
 {
     if (!$condition) {
-        abort($status);
+        Router::abort($status);
     }
 }
 
-function base_path($path)
+function base_path($path): string
 {
     return BASE_PATH . $path;
 }
 
-function view($path, $attributes = [])
+function view($path, $attributes = []): void
 {
     extract($attributes);
 
     require base_path('views/' . $path);
+}
+
+function controller_path($controller): string
+{
+    return "/controllers/{$controller}.php";
 }
