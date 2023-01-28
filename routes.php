@@ -21,9 +21,11 @@ $router->get($about, controller_path('about'));
 // Notes
 $notes = '/notes';
 $router->get($notes, controller_path('notes/index'));
+$router->post($notes, controller_path('notes/store'));
+
 $router->get('/note', controller_path('notes/show'));
-$router->get($notes . '/create', controller_path('notes/create'));
-$router->post($notes . '/create', controller_path('notes/create'));
 $router->delete('/note', controller_path('notes/destroy'));
+
+$router->get($notes . '/create', controller_path('notes/create'));
 
 // Contact
